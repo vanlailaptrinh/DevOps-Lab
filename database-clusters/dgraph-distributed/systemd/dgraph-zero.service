@@ -1,0 +1,25 @@
+[Unit]
+Description = Dgraph Zero
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type = simple
+User = dgraph
+Group = dgraph
+
+WorkingDirectory=/var/lib/dgraph/zero
+
+ExecStart = /usr/local/bin/dgraph zero \
+    --my=dgraph-node-01:5080 \
+    --raft "idx=1" \
+    --replicas=3
+
+Restart=always
+RestartSec=5
+LimitNOFILE=1048576
+
+[Install]
+WantedBy=multi-user.target
+
+
