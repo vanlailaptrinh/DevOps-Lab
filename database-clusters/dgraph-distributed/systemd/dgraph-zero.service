@@ -12,8 +12,15 @@ WorkingDirectory=/var/lib/dgraph/zero
 
 ExecStart = /usr/local/bin/dgraph zero \
     --my=dgraph-node-01:5080 \
+#   --my=dgraph-node-02:5080 \
+#   --my=dgraph-node-03:5080 \
+
     --raft "idx=1" \
     --replicas=3
+#   --raft "idx=2" \
+#   --peer=dgraph-node-01:5080
+#   --raft "idx=3" \
+#   --peer=dgraph-node-01:5080
 
 Restart=always
 RestartSec=5
