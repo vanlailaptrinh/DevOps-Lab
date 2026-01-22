@@ -1,0 +1,33 @@
+[Unit]
+Description = Dgraph Alpha
+After=network-online.target dgraph-zero.service
+Wants=network-online.target
+Requires=dgraph-zero.service
+
+[Service]
+Type = simple
+User = dgraph
+Group = dgraph
+
+WorkingDirectory=/var/lib/dgraph/alpha
+
+
+ExecStart = /usr/local/bin/dgraph alpha \
+    --my=dgraph-node-01:7080 \
+#    --my=dgraph-node-01:7080 \
+#    --my=dgraph-node-01:7080 \
+
+    --zero=dgraph-node-01:5080,dgraph-node-02:5080,dgraph-node-03:5080 \
+    -p /var/lib/dgraph/alpha/postings \
+    -w /var/lib/dgraph/alpha/wal \
+    --bindall \
+    --v=2 \
+    --logtostderr
+Restart=on-failure
+RestartSec=5
+LimitNOFILE=1048576
+
+[Install]
+WantedBy=multi-user.target
+
+
