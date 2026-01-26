@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wg-config
+  namespace: wireguard
+data:
+  wg0.conf.template: |
+    [Interface]
+    Address = 10.0.0.1/24
+    ListenPort = 51820
+
+    ### CLIENT 1 ###
+    [Peer]
+    PublicKey = <INSERT_CLIENT_PUBLIC_KEY_HERE>    
+    AllowedIPs = 10.0.0.2/32

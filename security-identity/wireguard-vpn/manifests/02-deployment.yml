@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wg-deployment 
+  namespace: wireguard
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wireguard
+  template:
+    metadata:
+      labels:
+        app: wireguard
+    spec:
+      tolerations:
+      - key: "node.kubernetes.io/not-ready"
+        operator: "Exists"
+        effect: "NoExecute"
+        tolerationSeconds: 1
+      
+      - key: "node.kubernetes.io/unreachable"
+        operator: "Exists"
+        effect: "NoExecute"
+        tolerationSeconds: 1
+
+      containers:
+      - name: vpn
+      # Custom image: Built on ubuntu base (latest)
+        image: vantran102/wireguard:v1
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          privileged: true
+          capabilities:
+            add: ["NET_ADMIN"]
+
+        volumeMounts:
+        - name: wg-config-vol
+          mountPath: "/etc/wireguard-config"
+          readOnly: true
+
+        - name: wg-secret-vol
+          mountPath: "/etc/wireguard-secret"
+          readOnly: true
+      volumes:
+      - name: wg-config-vol
+        configMap:
+          name: wg-config
+
+      - name: wg-secret-vol
+        secret:
+          secretName: wg-secret
