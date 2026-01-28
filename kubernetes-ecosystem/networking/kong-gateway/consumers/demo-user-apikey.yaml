@@ -1,0 +1,9 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongCredential
+metadata:
+  name: demo-user-key
+  namespace: kong
+consumerRef: demo-user
+type: key-auth
+config:
+  key: abc123

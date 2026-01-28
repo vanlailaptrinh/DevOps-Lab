@@ -1,0 +1,6 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongConsumer
+metadata:
+  name: demo-user
+  namespace: kong
+username: demo-user
