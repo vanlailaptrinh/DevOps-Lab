@@ -1,17 +1,18 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: dummy-ingress
-  namespace: kong
+  name: traefik-ingress
+  namespace: traefik
 spec:
   ingressClassName: kong
   rules:
-  - http:
+  - host: traefik.app.com
+    http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: hello-service
+            name: whoami-service
             port:
               number: 80
