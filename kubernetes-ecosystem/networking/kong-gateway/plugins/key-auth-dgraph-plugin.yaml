@@ -1,0 +1,11 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: key-auth
+  namespace: dgraph
+  annotations:
+    kubernetes.io/ingress.class: kong  
+plugin: key-auth
+config:
+  key_names:
+    - apikey
