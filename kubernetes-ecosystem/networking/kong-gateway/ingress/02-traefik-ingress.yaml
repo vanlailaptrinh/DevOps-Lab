@@ -6,10 +6,10 @@ metadata:
 spec:
   ingressClassName: kong
   rules:
-  - host: traefik.app.com
-    http:
+  # - host: traefik.app.com
+  - http:
       paths:
-      - path: /
+      - path: /traefik
         pathType: Prefix
         backend:
           service:
