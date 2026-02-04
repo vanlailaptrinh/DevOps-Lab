@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: dgraph-grpc-service   
+  namespace: dgraph      
+subsets:
+  - addresses:
+      - ip: 192.168.100.201
+      - ip: 192.168.100.202
+      - ip: 192.168.100.203
+    ports:
+    - name: grpc-port 
+      port: 9080
+      protocol: TCP

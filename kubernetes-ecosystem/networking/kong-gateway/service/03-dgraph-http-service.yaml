@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dgraph-http-service
+  namespace: dgraph
+spec:
+  ports:
+  - name: http-port    
+    protocol: TCP
+    port: 8080
+    targetPort: 8080

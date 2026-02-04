@@ -15,6 +15,6 @@ spec:
         pathType: ImplementationSpecific
         backend:
           service:
-            name: dgraph-service 
+            name: dgraph-grpc-service 
             port:
               number: 9080 
