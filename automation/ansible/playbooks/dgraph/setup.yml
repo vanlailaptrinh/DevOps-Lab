@@ -1,0 +1,26 @@
+---
+- name: Configure Dgraph Alpha Cluster
+  hosts: dgraph_alpha
+  become: yes  
+  gather_facts: no 
+
+  tasks:
+    - name: Remove unused ACL Secret file
+      file:
+        path: /var/lib/dgraph/acl_secret
+        state: absent
+        
+    - name: Deploy Dgraph Alpha Systemd Service
+      template:
+        src: templates/dgraph-alpha.service.j2
+        dest: /etc/systemd/system/dgraph-alpha.service
+        mode: '0644'
+      notify: Restart Dgraph Alpha
+
+  handlers:
+    - name: Restart Dgraph Alpha
+      systemd:
+        name: dgraph-alpha
+        state: restarted
+        daemon_reload: yes
+        enabled: yes
