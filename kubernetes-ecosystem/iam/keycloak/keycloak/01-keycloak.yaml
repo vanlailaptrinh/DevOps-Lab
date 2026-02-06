@@ -1,0 +1,25 @@
+  apiVersion: k8s.keycloak.org/v2alpha1
+  kind: Keycloak
+  metadata:
+    name: my-keycloak
+    namespace: keycloak
+  spec:
+    instances: 1
+    image: quay.io/keycloak/keycloak:26.5.2
+    
+    db:
+      vendor: postgres
+      host: postgres-db        
+      usernameSecret:
+        name: keycloak-db-secret 
+        key: username
+      passwordSecret:
+        name: keycloak-db-secret 
+        key: password
+    http:
+      httpEnabled: true        
+    hostname:
+      strict: false           
+      strictBackchannel: false
+    proxy:
+      headers: xforwarded
