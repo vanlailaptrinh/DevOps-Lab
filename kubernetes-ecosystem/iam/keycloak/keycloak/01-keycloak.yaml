@@ -4,9 +4,7 @@
     name: my-keycloak
     namespace: keycloak
   spec:
-    instances: 1
-    image: quay.io/keycloak/keycloak:26.5.2
-    
+    instances: 1    
     db:
       vendor: postgres
       host: postgres-db        

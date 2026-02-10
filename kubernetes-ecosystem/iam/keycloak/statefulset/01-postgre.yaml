@@ -31,7 +31,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: keycloak-db-secret  
-                  key: username
+                  key: password
 
             - name: PGDATA
               value: /data/pgdata
