@@ -1,0 +1,11 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: keycloak-jwt-plugin
+  namespace: dgraph  
+plugin: jwt
+config:
+  claims_to_verify:
+    - exp
+  header_names:
+    - Authorization

@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: dgraph-http-service
   namespace: dgraph
+  annotations:
+    konghq.com/plugins: keycloak-jwt-plugin
 spec:
   ports:
   - name: http-port    

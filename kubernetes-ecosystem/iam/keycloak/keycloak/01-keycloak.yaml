@@ -21,3 +21,5 @@
       strictBackchannel: false
     proxy:
       headers: xforwarded
+
+# You need to create the database before creating the KeyCloak resource

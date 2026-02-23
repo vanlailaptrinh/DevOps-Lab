@@ -1,0 +1,157 @@
+[root@worker-node-02 ~]# journalctl -u containerd -f
+Feb 11 05:12:54 worker-node-02 containerd[2999]: time="2026-02-11T05:12:54.059728235-05:00" level=info msg="Start subscribing containerd event"
+Feb 11 05:12:54 worker-node-02 containerd[2999]: time="2026-02-11T05:12:54.059733858-05:00" level=info msg=serving... address=/run/containerd/containerd.sock.ttrpc
+Feb 11 05:12:54 worker-node-02 containerd[2999]: time="2026-02-11T05:12:54.059947308-05:00" level=info msg=serving... address=/run/containerd/containerd.sock
+Feb 11 05:12:54 worker-node-02 containerd[2999]: time="2026-02-11T05:12:54.059898160-05:00" level=info msg="Start recovering state"
+Feb 11 05:12:54 worker-node-02 containerd[2999]: time="2026-02-11T05:12:54.059999517-05:00" level=info msg="Start event monitor"
+Feb 11 05:12:54 worker-node-02 containerd[2999]: time="2026-02-11T05:12:54.060009497-05:00" level=info msg="Start snapshots syncer"
+Feb 11 05:12:54 worker-node-02 containerd[2999]: time="2026-02-11T05:12:54.060015133-05:00" level=info msg="Start cni network conf syncer for default"
+Feb 11 05:12:54 worker-node-02 containerd[2999]: time="2026-02-11T05:12:54.060018150-05:00" level=info msg="Start streaming server"
+Feb 11 05:12:54 worker-node-02 systemd[1]: Started containerd container runtime.
+Feb 11 05:12:54 worker-node-02 containerd[2999]: time="2026-02-11T05:12:54.060800692-05:00" level=info msg="containerd successfully booted in 0.029586s"
+Feb 11 05:13:01 worker-node-02 containerd[2999]: time="2026-02-11T05:13:01.888422041-05:00" level=info msg="RunPodSandbox for &PodSandboxMetadata{Name:kube-proxy-jxmvm,Uid:76c85fa8-08bd-4956-b9d5-4458748cfd86,Namespace:kube-system,Attempt:0,}"
+Feb 11 05:13:02 worker-node-02 containerd[2999]: panic: invalid freelist page: 129, page type is leaf
+Feb 11 05:13:02 worker-node-02 containerd[2999]: goroutine 137 [running]:
+Feb 11 05:13:02 worker-node-02 containerd[2999]: go.etcd.io/bbolt.(*freelist).read(0x55e9ed767838?, 0x7fcdae180000)
+Feb 11 05:13:02 worker-node-02 containerd[2999]:         /go/src/github.com/containerd/containerd/vendor/go.etcd.io/bbolt/freelist.go:267 +0x209
+Feb 11 05:13:02 worker-node-02 containerd[2999]: go.etcd.io/bbolt.(*DB).loadFreelist.func1()
+Feb 11 05:13:02 worker-node-02 containerd[2999]:         /go/src/github.com/containerd/containerd/vendor/go.etcd.io/bbolt/db.go:420 +0xb7
+Feb 11 05:13:02 worker-node-02 containerd[2999]: sync.(*Once).doSlow(0x55e9ecd162a0?, 0xc000178890?)
+Feb 11 05:13:02 worker-node-02 containerd[2999]:         /usr/local/go/src/sync/once.go:76 +0xb4
+Feb 11 05:13:02 worker-node-02 containerd[2999]: sync.(*Once).Do(...)
+Feb 11 05:13:02 worker-node-02 containerd[2999]:         /usr/local/go/src/sync/once.go:67
+Feb 11 05:13:02 worker-node-02 containerd[2999]: go.etcd.io/bbolt.(*DB).loadFreelist(0xc0001786c8?)
+Feb 11 05:13:02 worker-node-02 containerd[2999]:         /go/src/github.com/containerd/containerd/vendor/go.etcd.io/bbolt/db.go:413 +0x3b
+Feb 11 05:13:02 worker-node-02 containerd[2999]: go.etcd.io/bbolt.Open({0xc000230640, 0x46}, 0x180, 0x0)
+Feb 11 05:13:02 worker-node-02 containerd[2999]:         /go/src/github.com/containerd/containerd/vendor/go.etcd.io/bbolt/db.go:295 +0x430
+Feb 11 05:13:02 worker-node-02 containerd[2999]: github.com/containerd/containerd/snapshots/storage.(*MetaStore).TransactionContext(0xc00007e5e0, {0x55e9ededc998, 0xc00074cc30}, 0x1)
+Feb 11 05:13:02 worker-node-02 containerd[2999]:         /go/src/github.com/containerd/containerd/snapshots/storage/metastore.go:90 +0x99
+Feb 11 05:13:02 worker-node-02 containerd[2999]: github.com/containerd/containerd/snapshots/storage.(*MetaStore).WithTransaction(0xc0007c6db8?, {0x55e9ededc998?, 0xc00074cc30?}, 0x1, 0xc0002e9ea0)
+Feb 11 05:13:02 worker-node-02 containerd[2999]:         /go/src/github.com/containerd/containerd/snapshots/storage/metastore.go:115 +0x45
+Feb 11 05:13:02 worker-node-02 containerd[2999]: github.com/containerd/containerd/snapshots/overlay.(*snapshotter).createSnapshot(0xc000018d00, {0x55e9ededc998, 0xc00074cc30}, 0x2, {0xc000cf92d0, 0x69}, {0x0, 0x0}, {0xc00012cc58, 0x1, ...})
+Feb 11 05:13:02 worker-node-02 containerd[2999]:         /go/src/github.com/containerd/containerd/snapshots/overlay/overlay.go:428 +0x25b
+Feb 11 05:13:02 worker-node-02 containerd[2999]: github.com/containerd/containerd/snapshots/overlay.(*snapshotter).Prepare(0xc0000fd280?, {0x55e9ededc998?, 0xc00074cc30?}, {0xc000cf92d0?, 0x70?}, {0x0?, 0xc0007c6f48?}, {0xc00012cc58, 0x1, 0x1})
+Feb 11 05:13:02 worker-node-02 containerd[2999]:         /go/src/github.com/containerd/containerd/snapshots/overlay/overlay.go:250 +0x65
+Feb 11 05:13:02 worker-node-02 containerd[2999]: github.com/containerd/containerd/metadata.(*snapshotter).createSnapshot(0xc000564a40, {0x55e9ededc998, 0xc00074cc30}, {0xc000772660, 0x5e}, {0x0, 0x0}, 0x0, {0xc00012cc50, 0x1, ...})
+Feb 11 05:13:02 worker-node-02 containerd[2999]:         /go/src/github.com/containerd/containerd/metadata/snapshot.go:385 +0x6c9
+Feb 11 05:13:02 worker-node-02 containerd[2999]: github.com/containerd/containerd/metadata.(*snapshotter).Prepare(0xc000564a40, {0x55e9ededc998, 0xc00074cc30}, {0xc000772660, 0x5e}, {0x0, 0x0}, {0xc00012cc50, 0x1, 0x1})
+Feb 11 05:13:02 worker-node-02 containerd[2999]:         /go/src/github.com/containerd/containerd/metadata/snapshot.go:278 +0x78
+Feb 11 05:13:02 worker-node-02 containerd[2999]: github.com/containerd/containerd/pkg/unpack.(*Unpacker).unpack.func1(0x0, {{0xc000d04b80, 0x31}, {0xc000bad810, 0x47}, 0x4af52, {0x0, 0x0, 0x0}, 0x0, ...})
+Feb 11 05:13:02 worker-node-02 containerd[2999]:         /go/src/github.com/containerd/containerd/pkg/unpack/unpacker.go:317 +0x893
+Feb 11 05:13:02 worker-node-02 containerd[2999]: github.com/containerd/containerd/pkg/unpack.(*Unpacker).unpack(0xc00074e360, {0x55e9edec25a0, 0xc00061c120}, {{0xc0000583c0, 0x2e}, {0xc000bad7c0, 0x47}, 0x3cd, {0x0, 0x0, ...}, ...}, ...)
+Feb 11 05:13:02 worker-node-02 containerd[2999]:         /go/src/github.com/containerd/containerd/pkg/unpack/unpacker.go:417 +0xf48
+Feb 11 05:13:02 worker-node-02 containerd[2999]: github.com/containerd/containerd.(*Client).Pull.func2.(*Unpacker).Unpack.1.1()
+Feb 11 05:13:02 worker-node-02 containerd[2999]:         /go/src/github.com/containerd/containerd/pkg/unpack/unpacker.go:213 +0x66
+Feb 11 05:13:02 worker-node-02 containerd[2999]: golang.org/x/sync/errgroup.(*Group).Go.func1()
+Feb 11 05:13:02 worker-node-02 containerd[2999]:         /go/src/github.com/containerd/containerd/vendor/golang.org/x/sync/errgroup/errgroup.go:93 +0x50
+Feb 11 05:13:02 worker-node-02 containerd[2999]: created by golang.org/x/sync/errgroup.(*Group).Go in goroutine 134
+Feb 11 05:13:02 worker-node-02 containerd[2999]:         /go/src/github.com/containerd/containerd/vendor/golang.org/x/sync/errgroup/errgroup.go:78 +0x96
+Feb 11 05:13:02 worker-node-02 systemd[1]: containerd.service: Main process exited, code=exited, status=2/INVALIDARGUMENT
+Feb 11 05:13:02 worker-node-02 systemd[1]: containerd.service: Failed with result 'exit-code'.
+Feb 11 05:13:07 worker-node-02 systemd[1]: containerd.service: Scheduled restart job, restart counter is at 55.
+Feb 11 05:13:07 worker-node-02 systemd[1]: Stopped containerd container runtime.
+Feb 11 05:13:07 worker-node-02 systemd[1]: Starting containerd container runtime...
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.789251231-05:00" level=info msg="starting containerd" revision=b98a3aace656320842a23f4a392a33f46af97866 version=v1.7.28
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.803812303-05:00" level=info msg="loading plugin \"io.containerd.snapshotter.v1.aufs\"..." type=io.containerd.snapshotter.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.805668780-05:00" level=info msg="skip loading plugin \"io.containerd.snapshotter.v1.aufs\"..." error="aufs is not supported (modprobe aufs failed: exit status 1 \"modprobe: FATAL: Module aufs not found in directory /lib/modules/5.14.0-362.8.1.el9_3.x86_64\\n\"): skip plugin" type=io.containerd.snapshotter.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.805734769-05:00" level=info msg="loading plugin \"io.containerd.event.v1.exchange\"..." type=io.containerd.event.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.805760758-05:00" level=info msg="loading plugin \"io.containerd.internal.v1.opt\"..." type=io.containerd.internal.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.805796239-05:00" level=info msg="loading plugin \"io.containerd.warning.v1.deprecations\"..." type=io.containerd.warning.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.805816935-05:00" level=info msg="loading plugin \"io.containerd.snapshotter.v1.blockfile\"..." type=io.containerd.snapshotter.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.805851766-05:00" level=info msg="skip loading plugin \"io.containerd.snapshotter.v1.blockfile\"..." error="no scratch file generator: skip plugin" type=io.containerd.snapshotter.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.805869861-05:00" level=info msg="loading plugin \"io.containerd.snapshotter.v1.btrfs\"..." type=io.containerd.snapshotter.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.805954582-05:00" level=info msg="skip loading plugin \"io.containerd.snapshotter.v1.btrfs\"..." error="path /var/lib/containerd/io.containerd.snapshotter.v1.btrfs (xfs) must be a btrfs filesystem to be used with the btrfs snapshotter: skip plugin" type=io.containerd.snapshotter.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.805975406-05:00" level=info msg="loading plugin \"io.containerd.snapshotter.v1.devmapper\"..." type=io.containerd.snapshotter.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.806002471-05:00" level=info msg="skip loading plugin \"io.containerd.snapshotter.v1.devmapper\"..." error="devmapper not configured: skip plugin" type=io.containerd.snapshotter.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.806019841-05:00" level=info msg="loading plugin \"io.containerd.snapshotter.v1.native\"..." type=io.containerd.snapshotter.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.806044027-05:00" level=info msg="loading plugin \"io.containerd.snapshotter.v1.overlayfs\"..." type=io.containerd.snapshotter.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.806112881-05:00" level=info msg="loading plugin \"io.containerd.snapshotter.v1.zfs\"..." type=io.containerd.snapshotter.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.806189548-05:00" level=info msg="skip loading plugin \"io.containerd.snapshotter.v1.zfs\"..." error="path /var/lib/containerd/io.containerd.snapshotter.v1.zfs must be a zfs filesystem to be used with the zfs snapshotter: skip plugin" type=io.containerd.snapshotter.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.806236612-05:00" level=info msg="loading plugin \"io.containerd.content.v1.content\"..." type=io.containerd.content.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.806306692-05:00" level=info msg="loading plugin \"io.containerd.metadata.v1.bolt\"..." type=io.containerd.metadata.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.806388712-05:00" level=info msg="metadata content store policy set" policy=shared
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.806914592-05:00" level=info msg="loading plugin \"io.containerd.gc.v1.scheduler\"..." type=io.containerd.gc.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.806989433-05:00" level=info msg="loading plugin \"io.containerd.differ.v1.walking\"..." type=io.containerd.differ.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.807027755-05:00" level=info msg="loading plugin \"io.containerd.lease.v1.manager\"..." type=io.containerd.lease.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.807049981-05:00" level=info msg="loading plugin \"io.containerd.streaming.v1.manager\"..." type=io.containerd.streaming.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.807070291-05:00" level=info msg="loading plugin \"io.containerd.runtime.v1.linux\"..." type=io.containerd.runtime.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.807108321-05:00" level=info msg="loading plugin \"io.containerd.monitor.v1.cgroups\"..." type=io.containerd.monitor.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.807250418-05:00" level=info msg="loading plugin \"io.containerd.runtime.v2.task\"..." type=io.containerd.runtime.v2
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.807298800-05:00" level=info msg="loading plugin \"io.containerd.runtime.v2.shim\"..." type=io.containerd.runtime.v2
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.807362869-05:00" level=info msg="loading plugin \"io.containerd.sandbox.store.v1.local\"..." type=io.containerd.sandbox.store.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.807386482-05:00" level=info msg="loading plugin \"io.containerd.sandbox.controller.v1.local\"..." type=io.containerd.sandbox.controller.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.807420786-05:00" level=info msg="loading plugin \"io.containerd.service.v1.containers-service\"..." type=io.containerd.service.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.807444909-05:00" level=info msg="loading plugin \"io.containerd.service.v1.content-service\"..." type=io.containerd.service.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.807463299-05:00" level=info msg="loading plugin \"io.containerd.service.v1.diff-service\"..." type=io.containerd.service.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.807485093-05:00" level=info msg="loading plugin \"io.containerd.service.v1.images-service\"..." type=io.containerd.service.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.807504590-05:00" level=info msg="loading plugin \"io.containerd.service.v1.introspection-service\"..." type=io.containerd.service.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.807523356-05:00" level=info msg="loading plugin \"io.containerd.service.v1.namespaces-service\"..." type=io.containerd.service.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.807542075-05:00" level=info msg="loading plugin \"io.containerd.service.v1.snapshots-service\"..." type=io.containerd.service.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.807561804-05:00" level=info msg="loading plugin \"io.containerd.service.v1.tasks-service\"..." type=io.containerd.service.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.807589279-05:00" level=info msg="loading plugin \"io.containerd.grpc.v1.containers\"..." type=io.containerd.grpc.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.807608909-05:00" level=info msg="loading plugin \"io.containerd.grpc.v1.content\"..." type=io.containerd.grpc.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.807628354-05:00" level=info msg="loading plugin \"io.containerd.grpc.v1.diff\"..." type=io.containerd.grpc.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.807657831-05:00" level=info msg="loading plugin \"io.containerd.grpc.v1.events\"..." type=io.containerd.grpc.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.807682018-05:00" level=info msg="loading plugin \"io.containerd.grpc.v1.images\"..." type=io.containerd.grpc.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.807701404-05:00" level=info msg="loading plugin \"io.containerd.grpc.v1.introspection\"..." type=io.containerd.grpc.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.807719554-05:00" level=info msg="loading plugin \"io.containerd.grpc.v1.leases\"..." type=io.containerd.grpc.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.807738286-05:00" level=info msg="loading plugin \"io.containerd.grpc.v1.namespaces\"..." type=io.containerd.grpc.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.807759265-05:00" level=info msg="loading plugin \"io.containerd.grpc.v1.sandbox-controllers\"..." type=io.containerd.grpc.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.807780111-05:00" level=info msg="loading plugin \"io.containerd.grpc.v1.sandboxes\"..." type=io.containerd.grpc.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.807798181-05:00" level=info msg="loading plugin \"io.containerd.grpc.v1.snapshots\"..." type=io.containerd.grpc.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.807815683-05:00" level=info msg="loading plugin \"io.containerd.grpc.v1.streaming\"..." type=io.containerd.grpc.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.807839200-05:00" level=info msg="loading plugin \"io.containerd.grpc.v1.tasks\"..." type=io.containerd.grpc.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.807860731-05:00" level=info msg="loading plugin \"io.containerd.transfer.v1.local\"..." type=io.containerd.transfer.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.807893679-05:00" level=info msg="loading plugin \"io.containerd.grpc.v1.transfer\"..." type=io.containerd.grpc.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.807913192-05:00" level=info msg="loading plugin \"io.containerd.grpc.v1.version\"..." type=io.containerd.grpc.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.807930447-05:00" level=info msg="loading plugin \"io.containerd.internal.v1.restart\"..." type=io.containerd.internal.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.807969528-05:00" level=info msg="loading plugin \"io.containerd.tracing.processor.v1.otlp\"..." type=io.containerd.tracing.processor.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.807992945-05:00" level=info msg="skip loading plugin \"io.containerd.tracing.processor.v1.otlp\"..." error="skip plugin: tracing endpoint not configured" type=io.containerd.tracing.processor.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.808013290-05:00" level=info msg="loading plugin \"io.containerd.internal.v1.tracing\"..." type=io.containerd.internal.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.808033987-05:00" level=info msg="skip loading plugin \"io.containerd.internal.v1.tracing\"..." error="skip plugin: tracing endpoint not configured" type=io.containerd.internal.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.808052031-05:00" level=info msg="loading plugin \"io.containerd.grpc.v1.healthcheck\"..." type=io.containerd.grpc.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.808071270-05:00" level=info msg="loading plugin \"io.containerd.nri.v1.nri\"..." type=io.containerd.nri.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.808098656-05:00" level=info msg="NRI interface is disabled by configuration."
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.808117119-05:00" level=info msg="loading plugin \"io.containerd.grpc.v1.cri\"..." type=io.containerd.grpc.v1
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.808282270-05:00" level=warning msg="`mirrors` is deprecated, please use `config_path` instead"
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.808399700-05:00" level=info msg="Start cri plugin with config {PluginConfig:{ContainerdConfig:{Snapshotter:overlayfs DefaultRuntimeName:runc DefaultRuntime:{Type: Path: Engine: PodAnnotations:[] ContainerAnnotations:[] Root: Options:map[] PrivilegedWithoutHostDevices:false PrivilegedWithoutHostDevicesAllDevicesAllowed:false BaseRuntimeSpec: NetworkPluginConfDir: NetworkPluginMaxConfNum:0 Snapshotter: SandboxMode:} UntrustedWorkloadRuntime:{Type: Path: Engine: PodAnnotations:[] ContainerAnnotations:[] Root: Options:map[] PrivilegedWithoutHostDevices:false PrivilegedWithoutHostDevicesAllDevicesAllowed:false BaseRuntimeSpec: NetworkPluginConfDir: NetworkPluginMaxConfNum:0 Snapshotter: SandboxMode:} Runtimes:map[runc:{Type:io.containerd.runc.v2 Path: Engine: PodAnnotations:[] ContainerAnnotations:[] Root: Options:map[BinaryName: CriuImagePath: CriuPath: CriuWorkPath: IoGid:0 IoUid:0 NoNewKeyring:false NoPivotRoot:false Root: ShimCgroup: SystemdCgroup:true] PrivilegedWithoutHostDevices:false PrivilegedWithoutHostDevicesAllDevicesAllowed:false BaseRuntimeSpec: NetworkPluginConfDir: NetworkPluginMaxConfNum:0 Snapshotter: SandboxMode:podsandbox}] NoPivot:false DisableSnapshotAnnotations:true DiscardUnpackedLayers:false IgnoreBlockIONotEnabledErrors:false IgnoreRdtNotEnabledErrors:false} CniConfig:{NetworkPluginBinDir:/opt/cni/bin NetworkPluginConfDir:/etc/cni/net.d NetworkPluginMaxConfNum:1 NetworkPluginSetupSerially:false NetworkPluginConfTemplate: IPPreference:} Registry:{ConfigPath: Mirrors:map[100.110.79.41:{Endpoints:[http://100.110.79.41]} 192.168.100.166:{Endpoints:[http://192.168.100.166]}] Configs:map[] Auths:map[] Headers:map[]} ImageDecryption:{KeyModel:node} DisableTCPService:true StreamServerAddress:127.0.0.1 StreamServerPort:0 StreamIdleTimeout:4h0m0s EnableSelinux:false SelinuxCategoryRange:1024 SandboxImage:registry.k8s.io/pause:3.8 StatsCollectPeriod:10 SystemdCgroup:false EnableTLSStreaming:false X509KeyPairStreaming:{TLSCertFile: TLSKeyFile:} MaxContainerLogLineSize:16384 DisableCgroup:false DisableApparmor:false RestrictOOMScoreAdj:false MaxConcurrentDownloads:3 DisableProcMount:false UnsetSeccompProfile: TolerateMissingHugetlbController:true DisableHugetlbController:true DeviceOwnershipFromSecurityContext:false IgnoreImageDefinedVolumes:false NetNSMountsUnderStateDir:false EnableUnprivilegedPorts:false EnableUnprivilegedICMP:false EnableCDI:false CDISpecDirs:[/etc/cdi /var/run/cdi] ImagePullProgressTimeout:5m0s DrainExecSyncIOTimeout:0s ImagePullWithSyncFs:false IgnoreDeprecationWarnings:[]} ContainerdRootDir:/var/lib/containerd ContainerdEndpoint:/run/containerd/containerd.sock RootDir:/var/lib/containerd/io.containerd.grpc.v1.cri StateDir:/run/containerd/io.containerd.grpc.v1.cri}"
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.808520561-05:00" level=info msg="Connect containerd service"
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.808603588-05:00" level=info msg="using legacy CRI server"
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.808625415-05:00" level=info msg="using experimental NRI integration - disable nri plugin to prevent this"
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.808831656-05:00" level=info msg="Get image filesystem path \"/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs\""
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.809301825-05:00" level=error msg="failed to load cni during init, please check CRI plugin status before setting up network for pods" error="cni config load failed: no network config found in /etc/cni/net.d: cni plugin not initialized: failed to load cni config"
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.809793796-05:00" level=info msg="Start subscribing containerd event"
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.810446165-05:00" level=info msg="Start recovering state"
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.810525497-05:00" level=info msg="Start event monitor"
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.810557650-05:00" level=info msg="Start snapshots syncer"
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.810575900-05:00" level=info msg="Start cni network conf syncer for default"
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.810593357-05:00" level=info msg="Start streaming server"
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.810529489-05:00" level=info msg=serving... address=/run/containerd/containerd.sock.ttrpc
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.810879220-05:00" level=info msg=serving... address=/run/containerd/containerd.sock
+Feb 11 05:13:07 worker-node-02 containerd[3025]: time="2026-02-11T05:13:07.810951758-05:00" level=info msg="containerd successfully booted in 0.022458s"
+Feb 11 05:13:07 worker-node-02 systemd[1]: Started containerd container runtime.
+
+
+
+-> Feb 11 05:13:02 worker-node-02 containerd[2999]: panic: invalid freelist page: 129, page type is leaf
+
+ontainerd dùng bbolt (boltDB) để lưu metadata snapshot ở:
+
+/var/lib/containerd/io.containerd.metadata.v1.bolt/meta.db
+
+
+systemctl stop kubelet
+systemctl stop containerd
+
+
+
+rm -rf /var/lib/containerd
+rm -rf /var/lib/cni
+(optional nhưng nên làm sạch):
+
+
+rm -rf /run/containerd
+
+
+systemctl start containerd
+systemctl start kubelet
