@@ -1,0 +1,16 @@
+[DEFAULT]
+backend = systemd
+maxretry = 3
+bantime = 120
+findtime = 300
+
+[proxmox]
+enabled = true
+port = 8006
+filter = proxmox
+journalmatch = _SYSTEMD_UNIT=pvedaemon.service
+
+
+[sshd]
+enabled = true
+port = 1234
