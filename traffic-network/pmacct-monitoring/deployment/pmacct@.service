@@ -1,0 +1,15 @@
+[Unit]
+Description=pmacct instance for %i
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/sbin/pmacctd -f /etc/pmacct/%i.conf
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+
+
+-- systemctl start pmacct@tap101i0 --
