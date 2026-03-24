@@ -8,6 +8,8 @@ packets INT NOT NULL,
 bytes BIGINT NOT NULL,
 stamp_inserted TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT NOW(),
 stamp_updated TIMESTAMP WITHOUT TIME ZONE,
+country_ip_src CHAR(2) NOT NULL DEFAULT '--',
+country_ip_dst CHAR(2) NOT NULL DEFAULT '--',
 PRIMARY KEY (agent_id, tag, ip_src, ip_dst, ip_proto, stamp_inserted)  
 );
 
