@@ -72,3 +72,7 @@ SQL Server Always On requires stable, bidirectional TCP connectivity between nod
 Think about what options exist when two endpoints share a common network (`192.168.1.0/24`) but their internal subnets are not exposed...
 
 > 💡 **Hint:** The two Proxmox nodes can see each other on `192.168.1.0/24`. If there were a way to create an **encrypted tunnel** between them — one that bridges their private subnets — the VMs wouldn't need to know anything about NAT at all.
+
+
+## Diagram
+![Proxmox NAT Routing MSSQL](../images/proxmox-nat-routing-mssql.png)
