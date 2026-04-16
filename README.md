@@ -1,62 +1,58 @@
-# 🏛️ Infrastructure & DevOps Engineering Lab
+# 🏛️ Centralized Infrastructure & DevOps Configuration Repository
 
-![Role](https://img.shields.io/badge/Role-DevOps_Intern-blue?style=for-the-badge&logo=linux)
-![Context](https://img.shields.io/badge/Context-XPERC_Internship-orange?style=for-the-badge)
-![Focus](https://img.shields.io/badge/Focus-HPC_&_Distributed_Systems-red?style=for-the-badge)
+![Role](https://img.shields.io/badge/Role-DevOps_Engineering-blue?style=for-the-badge&logo=linux)
+![Context](https://img.shields.io/badge/Context-XPERC-orange?style=for-the-badge)
+![Focus](https://img.shields.io/badge/Focus-IaC_&_Distributed_Systems-red?style=for-the-badge)
 
-## 📖 Introduction
-Welcome to my engineering repository. This project documents my journey in designing, deploying, and maintaining complex infrastructure systems, ranging from **High Performance Computing (HPC)** to **Multi-site Disaster Recovery (DR)** solutions.
+## 📖 Overview
+This repository serves as the **centralized source of truth** for Infrastructure as Code (IaC), deployment manifests, and system configurations. It contains the operational code, scripts, and state files required to provision, configure, and maintain complex distributed environments, ranging from **High Performance Computing (HPC)** clusters to **Multi-site Disaster Recovery (DR)** architectures.
 
-This repository is organized by **functional domains** rather than just tool names, reflecting a system-oriented architectural approach.
+The structure is organized by **functional domains** rather than isolated tools, reflecting a comprehensive, system-oriented architectural approach to infrastructure management.
 
-## 🏗️ Architecture & Projects
+## 🏗️ Domain Configurations & Managed Architectures
 
 ### 1. Database Clusters & Distributed Data 🛢️
-**Scope:** SQL, NoSQL, and Graph Databases.
-* **MSSQL High Availability:**
-    * Deployed **Multi-site DR** (2 Sites, 3 nodes/site) using **WSFC** & **Always On Availability Groups (AG)**.
-    * Linked sites via **Distributed Availability Group (DAG)** over VPN.
-* **PostgreSQL HA:** Built a 3-node cluster using **Patroni**, **Etcd**, and **Consul**.
-* **Dgraph (Planned):** Researching distributed Graph Database implementation.
+**Stored Artifacts:** High Availability (HA) configurations, failover scripts, and replication topologies for SQL/NoSQL systems.
+* **MSSQL High Availability:** Configurations for **Multi-site DR** (2 Sites, 3 nodes/site) utilizing **WSFC** & **Always On Availability Groups (AG)**, including **Distributed Availability Group (DAG)** networking over VPN.
+* **PostgreSQL HA:** Cluster manifests and configuration files for a 3-node HA setup using **Patroni**, **Etcd**, and **Consul**.
+* **Dgraph:** Deployment manifests for distributed Graph Database architectures (WIP).
 
 ### 2. High Performance Computing (HPC) 🚀
-**Scope:** Simulation processing & Job Scheduling.
-* **Slurm Cluster:** Deployed workload manager for CFD simulations.
-* **Simulation Jobs:** Optimized resource scheduling for **Ansys Fluent 2022R1** and **OpenFOAM** on Rocky Linux.
-* **Benchmarks:** Performance testing on variable core configurations.
+**Stored Artifacts:** Workload manager configurations, node definitions, and job scheduling scripts.
+* **Slurm Cluster:** Control node and compute node configuration files (`slurm.conf`, cgroups) for CFD simulations.
+* **Simulation Workloads:** Optimized resource allocation scripts for **Ansys Fluent 2022R1** and **OpenFOAM** environments on Rocky Linux.
 
 ### 3. Traffic Management & Networking 🌐
-**Scope:** L4/L7 Load Balancing, API Gateway, and Overlay Networks.
-* **Load Balancing:** **HAProxy** + **Keepalived** (VRRP) for stable failover.
-* **VPN Tunneling:** **NetBird** (Self-hosted) & **WireGuard** for Site-to-Site connectivity.
-* **Network Bonding:** Configured Linux Bonding on Proxmox to minimize packet loss during NIC failure.
-* **API Gateway (In Progress):** Setting up **Kong API Gateway** for centralized traffic control.
+**Stored Artifacts:** Proxy routing rules, overlay network configs, and Load Balancer definitions.
+* **Load Balancing:** **HAProxy** routing configurations and **Keepalived** (VRRP) definitions for seamless stateful failover.
+* **VPN Tunneling:** Routing tables and peer configurations for **NetBird** (Self-hosted) & **WireGuard** Site-to-Site connections.
+* **Network Bonding:** LACP and Active-Backup bonding configurations for Proxmox hypervisors.
+* **API Gateway:** **Kong API Gateway** declarative routing and plugin configurations.
 
 ### 4. Storage Systems 🐙
-**Scope:** Distributed Block/Object Storage.
-* **Ceph Reef (v18.2.7):**
-    * Deployed and upgraded a 5-node cluster (MON, OSD, RGW).
-    * **Deep Dive:** CRUSH Map analysis, Placement Groups (PGs) calculation, and Fault Tolerance testing.
+**Stored Artifacts:** Storage topology maps, daemon configurations, and disaster recovery scripts.
+* **Ceph Reef (v18.2.7):** * `ceph.conf` and deployment specs for a 5-node distributed cluster (MON, OSD, RGW).
+    * Custom **CRUSH Map** definitions, Placement Groups (PGs) tuning configurations, and automated Fault Tolerance testing scripts.
 
 ### 5. Kubernetes & DevSecOps ⚓
-**Scope:** Container Orchestration & CI/CD.
-* **Cluster Ops:** Kubeadm setup with **MetalLB** (Layer 2).
-* **CI/CD Pipeline:** Jenkins pipelines integrated with **Trivy** (Security Scan), **Harbor** (Registry), and **JFrog** (Artifacts).
-* **Optimization:** Custom DaemonSets for automated image cleanup.
+**Stored Artifacts:** YAML manifests, Helm values, and CI/CD pipeline definitions.
+* **Cluster Ops:** Kubeadm initialization configs and **MetalLB** (Layer 2) routing manifests.
+* **CI/CD Pipelines:** Declarative **Jenkinsfiles** integrated with **Trivy** (Security Scanning), **Harbor** (Registry), and **JFrog** (Artifact Storage).
+* **Optimization:** Custom DaemonSet manifests for cluster-wide node maintenance and automated image pruning.
 
 ### 6. Security & Identity Management 🔐
-**Scope:** IAM & Certificates.
-* **Keycloak (Planned):** Implementing SSO (Single Sign-On) and OIDC for internal services.
+**Stored Artifacts:** Access policies, realm configurations, and TLS management.
+* **Keycloak:** JSON realm exports and configurations for SSO and OIDC integration across internal infrastructure services.
 
 ## 📂 Repository Structure
 
 ```text
 devops-lab/
-├── 📂 database-clusters/           # MSSQL AG, Postgres Patroni, Dgraph
-├── 📂 high-performance-computing/  # Slurm configs, Ansys job scripts
-├── 📂 traffic-network/             # HAProxy, NetBird, Kong API Gateway
-├── 📂 storage-systems/             # Ceph deployment & RGW tests
-├── 📂 kubernetes-ecosystem/        # K8s manifests, Jenkins, Harbor
-├── 📂 security-identity/           # Keycloak IAM configs
-├── 📂 virtualization-hardware/     # Proxmox network bond, Hardware ops logs
-└── 📂 docs/                        # Architectural diagrams & PDF reports
+├── 📂 database-clusters/           # Patroni YAMLs, Postgres conf, MSSQL AG scripts
+├── 📂 high-performance-computing/  # slurm.conf, munge keys, Ansys job bash scripts
+├── 📂 traffic-network/             # haproxy.cfg, keepalived.conf, wireguard wg0.conf
+├── 📂 storage-systems/             # ceph.conf, CRUSH maps, RGW tuning parameters
+├── 📂 kubernetes-ecosystem/        # K8s YAML manifests, Jenkinsfiles, Helm values
+├── 📂 security-identity/           # Keycloak realm exports, OIDC configurations
+├── 📂 virtualization-hardware/     # Proxmox /etc/network/interfaces, Bond configs
+└── 📂 docs/                        # Architecture diagrams (Draw.io/Mermaid) & Reports
