@@ -1,0 +1,9 @@
+#!/bin/bash
+
+killall -0 haproxy 2>/dev/null || exit 1
+
+nc -z 127.0.0.1 5000 2>/dev/null || exit 1
+nc -z 127.0.0.1 5001 2>/dev/null || exit 1
+
+exit 0
+

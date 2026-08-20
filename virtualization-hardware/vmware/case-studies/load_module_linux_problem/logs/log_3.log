@@ -1,0 +1,52 @@
+:~$ mokutil --sb-state
+
+SecureBoot enabled
+
+----------------
+:~$ dmesg | grep -iE 'module|signature'
+[    2.302629] systemd[1]: Starting Load Kernel Module configfs...
+[    2.303018] systemd[1]: Starting Load Kernel Module drm...
+[    2.303685] systemd[1]: Starting Load Kernel Module efi_pstore...
+[    2.304679] systemd[1]: Starting Load Kernel Module fuse...
+[    2.306405] systemd[1]: Starting Load Kernel Modules...
+[    2.309102] systemd[1]: Finished Load Kernel Module configfs.
+[    2.309293] systemd[1]: Finished Load Kernel Module drm.
+[    2.309471] systemd[1]: Finished Load Kernel Module fuse.
+[    2.594253] Loading of module with unavailable key is rejected
+[    2.651385] Loading of module with unavailable key is rejected
+[    3.045152] Loading of module with unavailable key is rejected
+[    3.102261] Loading of module with unavailable key is rejected
+[    3.160654] Loading of module with unavailable key is rejected
+[    4.498667] Loading of module with unavailable key is rejected
+[    4.548318] Loading of module with unavailable key is rejected
+[    4.600065] Loading of module with unavailable key is rejected
+[    5.800701] Loading of module with unavailable key is rejected
+[    5.851592] Loading of module with unavailable key is rejected
+[    5.907290] Loading of module with unavailable key is rejected
+[    7.285893] Loading of module with unavailable key is rejected
+[    7.336274] Loading of module with unavailable key is rejected
+[    7.403442] Loading of module with unavailable key is rejected
+[    8.759728] Loading of module with unavailable key is rejected
+[    8.808096] Loading of module with unavailable key is rejected
+[    8.875624] Loading of module with unavailable key is rejected
+[   13.219623] Loading of module with unavailable key is rejected
+[   63.115997] Loading of unsigned module is rejected
+[   63.176509] Loading of unsigned module is rejected
+[  141.649514] Loading of module with unavailable key is rejected
+[  141.707651] Loading of module with unavailable key is rejected
+[  142.169353] Loading of module with unavailable key is rejected
+[  142.275620] Loading of module with unavailable key is rejected
+[  144.330836] Loading of module with unavailable key is rejected
+[  154.510532] Loading of module with unavailable key is rejected
+[  155.072341] Loading of module with unavailable key is rejected
+[  165.224138] Loading of module with unavailable key is rejected
+[  165.794347] Loading of module with unavailable key is rejected
+[  175.926961] Loading of module with unavailable key is rejected
+[ 1843.295859] Loading of unsigned module is rejected
+[ 1843.375796] Loading of unsigned module is rejected
+[ 1988.970366] Loading of module with unavailable key is rejected
+[ 1989.055256] Loading of module with unavailable key is rejected
+[ 3739.947944] Loading of unsigned module is rejected
+[ 3751.798051] Loading of unsigned module is rejected
+[ 4633.803561] Loading of unsigned module is rejected
+

@@ -1,0 +1,9 @@
+:~$ sudo modprobe vmmon
+
+modprobe: ERROR: could not insert 'vmmon': Key was rejected by service
+
+---------
+
+:~$ sudo modprobe vmnet
+
+modprobe: ERROR: could not insert 'vmnet': Key was rejected by service

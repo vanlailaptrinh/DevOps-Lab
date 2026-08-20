@@ -1,0 +1,8 @@
+---
+- name: Configure HAProxy and Keepalived
+  hosts: lb
+  become: true
+
+  roles:
+    - haproxy
+    - keepalived

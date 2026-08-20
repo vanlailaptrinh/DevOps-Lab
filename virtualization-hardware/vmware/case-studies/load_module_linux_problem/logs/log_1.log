@@ -1,0 +1,173 @@
+:~$ sudo vmware-modconfig --console --install-all
+
+[AppLoader] GLib does not have GSettings support.
+Stopping VMware services:
+   VMware Authentication Daemon                                        done
+   Virtual machine monitor                                             done
+make: Entering directory '/tmp/modconfig-sqzhkZ/vmmon-only'
+Using kernel build system.
+/usr/bin/make -C /lib/modules/6.8.0-136-generic/build/include/.. M=$PWD SRCROOT=$PWD/. \
+  MODULEBUILDDIR= modules
+make[1]: Entering directory '/usr/src/linux-headers-6.8.0-136-generic'
+warning: the compiler differs from the one used to build the kernel
+  The kernel was built by: x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04.3) 12.3.0
+  You are using:           gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04.3) 12.3.0
+  CC [M]  /tmp/modconfig-sqzhkZ/vmmon-only/linux/driver.o
+  CC [M]  /tmp/modconfig-sqzhkZ/vmmon-only/linux/driverLog.o
+  CC [M]  /tmp/modconfig-sqzhkZ/vmmon-only/linux/hostif.o
+  CC [M]  /tmp/modconfig-sqzhkZ/vmmon-only/common/apic.o
+  CC [M]  /tmp/modconfig-sqzhkZ/vmmon-only/common/comport.o
+  CC [M]  /tmp/modconfig-sqzhkZ/vmmon-only/common/cpuid.o
+  CC [M]  /tmp/modconfig-sqzhkZ/vmmon-only/common/crosspage.o
+  CC [M]  /tmp/modconfig-sqzhkZ/vmmon-only/common/memtrack.o
+  CC [M]  /tmp/modconfig-sqzhkZ/vmmon-only/common/moduleloop.o
+  CC [M]  /tmp/modconfig-sqzhkZ/vmmon-only/common/phystrack.o
+  CC [M]  /tmp/modconfig-sqzhkZ/vmmon-only/common/sharedAreaVmmon.o
+  CC [M]  /tmp/modconfig-sqzhkZ/vmmon-only/common/statVarsVmmon.o
+  CC [M]  /tmp/modconfig-sqzhkZ/vmmon-only/common/task.o
+  CC [M]  /tmp/modconfig-sqzhkZ/vmmon-only/common/vmx86.o
+  CC [M]  /tmp/modconfig-sqzhkZ/vmmon-only/bootstrap/bootstrap.o
+  CC [M]  /tmp/modconfig-sqzhkZ/vmmon-only/bootstrap/monLoader.o
+  CC [M]  /tmp/modconfig-sqzhkZ/vmmon-only/bootstrap/monLoaderVmmon.o
+  CC [M]  /tmp/modconfig-sqzhkZ/vmmon-only/bootstrap/vmmblob.o
+/tmp/modconfig-sqzhkZ/vmmon-only/common/phystrack.o: warning: objtool: PhysTrack_Add() falls through to next function PhysTrack_Remove()
+/tmp/modconfig-sqzhkZ/vmmon-only/common/phystrack.o: warning: objtool: PhysTrack_Remove() falls through to next function PhysTrack_Test()
+/tmp/modconfig-sqzhkZ/vmmon-only/common/task.o: warning: objtool: .text: unexpected end of section
+  LD [M]  /tmp/modconfig-sqzhkZ/vmmon-only/vmmon.o
+  MODPOST /tmp/modconfig-sqzhkZ/vmmon-only/Module.symvers
+  CC [M]  /tmp/modconfig-sqzhkZ/vmmon-only/vmmon.mod.o
+  LD [M]  /tmp/modconfig-sqzhkZ/vmmon-only/vmmon.ko
+  BTF [M] /tmp/modconfig-sqzhkZ/vmmon-only/vmmon.ko
+Skipping BTF generation for /tmp/modconfig-sqzhkZ/vmmon-only/vmmon.ko due to unavailability of vmlinux
+make[1]: Leaving directory '/usr/src/linux-headers-6.8.0-136-generic'
+/usr/bin/make -C $PWD SRCROOT=$PWD/. \
+  MODULEBUILDDIR= postbuild
+make[1]: Entering directory '/tmp/modconfig-sqzhkZ/vmmon-only'
+make[1]: 'postbuild' is up to date.
+make[1]: Leaving directory '/tmp/modconfig-sqzhkZ/vmmon-only'
+cp -f vmmon.ko ./../vmmon.o
+make: Leaving directory '/tmp/modconfig-sqzhkZ/vmmon-only'
+make: Entering directory '/tmp/modconfig-sqzhkZ/vmnet-only'
+Using kernel build system.
+/usr/bin/make -C /lib/modules/6.8.0-136-generic/build/include/.. M=$PWD SRCROOT=$PWD/. \
+  MODULEBUILDDIR= modules
+make[1]: Entering directory '/usr/src/linux-headers-6.8.0-136-generic'
+warning: the compiler differs from the one used to build the kernel
+  The kernel was built by: x86_64-linux-gnu-gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04.3) 12.3.0
+  You are using:           gcc-12 (Ubuntu 12.3.0-1ubuntu1~22.04.3) 12.3.0
+  CC [M]  /tmp/modconfig-sqzhkZ/vmnet-only/driver.o
+  CC [M]  /tmp/modconfig-sqzhkZ/vmnet-only/hub.o
+  CC [M]  /tmp/modconfig-sqzhkZ/vmnet-only/userif.o
+  CC [M]  /tmp/modconfig-sqzhkZ/vmnet-only/netif.o
+  CC [M]  /tmp/modconfig-sqzhkZ/vmnet-only/bridge.o
+  CC [M]  /tmp/modconfig-sqzhkZ/vmnet-only/procfs.o
+  CC [M]  /tmp/modconfig-sqzhkZ/vmnet-only/smac_compat.o
+  CC [M]  /tmp/modconfig-sqzhkZ/vmnet-only/smac.o
+  CC [M]  /tmp/modconfig-sqzhkZ/vmnet-only/vnetEvent.o
+  CC [M]  /tmp/modconfig-sqzhkZ/vmnet-only/vnetUserListener.o
+In file included from /tmp/modconfig-sqzhkZ/vmnet-only/smac_compat.c:53:
+/tmp/modconfig-sqzhkZ/vmnet-only/vnetInt.h:50: warning: "MAX" redefined
+   50 | #define MAX(_a, _b)   (((_a) > (_b)) ? (_a) : (_b))
+      | 
+In file included from ./include/linux/kernel.h:28,
+                 from /tmp/modconfig-sqzhkZ/vmnet-only/smac_compat.c:33:
+./include/linux/minmax.h:316: note: this is the location of the previous definition
+  316 | #define MAX(a, b) __cmp(max, a, b)
+      | 
+In file included from /tmp/modconfig-sqzhkZ/vmnet-only/netif.c:43:
+/tmp/modconfig-sqzhkZ/vmnet-only/vnetInt.h:50: warning: "MAX" redefined
+   50 | #define MAX(_a, _b)   (((_a) > (_b)) ? (_a) : (_b))
+      | 
+In file included from ./include/linux/kernel.h:28,
+                 from /tmp/modconfig-sqzhkZ/vmnet-only/netif.c:23:
+./include/linux/minmax.h:316: note: this is the location of the previous definition
+  316 | #define MAX(a, b) __cmp(max, a, b)
+      | 
+In file included from /tmp/modconfig-sqzhkZ/vmnet-only/driver.c:49:
+/tmp/modconfig-sqzhkZ/vmnet-only/vnetInt.h:50: warning: "MAX" redefined
+   50 | #define MAX(_a, _b)   (((_a) > (_b)) ? (_a) : (_b))
+      | 
+In file included from ./include/linux/kernel.h:28,
+                 from /tmp/modconfig-sqzhkZ/vmnet-only/driver.c:24:
+./include/linux/minmax.h:316: note: this is the location of the previous definition
+  316 | #define MAX(a, b) __cmp(max, a, b)
+      | 
+In file included from /tmp/modconfig-sqzhkZ/vmnet-only/hub.c:43:
+/tmp/modconfig-sqzhkZ/vmnet-only/vnetInt.h:50: warning: "MAX" redefined
+   50 | #define MAX(_a, _b)   (((_a) > (_b)) ? (_a) : (_b))
+      | 
+In file included from ./include/linux/kernel.h:28,
+                 from /tmp/modconfig-sqzhkZ/vmnet-only/hub.c:23:
+./include/linux/minmax.h:316: note: this is the location of the previous definition
+  316 | #define MAX(a, b) __cmp(max, a, b)
+      | 
+In file included from /tmp/modconfig-sqzhkZ/vmnet-only/vnetUserListener.c:39:
+/tmp/modconfig-sqzhkZ/vmnet-only/vnetInt.h:50: warning: "MAX" redefined
+   50 | #define MAX(_a, _b)   (((_a) > (_b)) ? (_a) : (_b))
+      | 
+In file included from ./include/linux/jiffies.h:8,
+                 from ./include/linux/ktime.h:25,
+                 from ./include/linux/timer.h:6,
+                 from ./include/linux/netdevice.h:24,
+                 from /tmp/modconfig-sqzhkZ/vmnet-only/vnetUserListener.c:33:
+./include/linux/minmax.h:316: note: this is the location of the previous definition
+  316 | #define MAX(a, b) __cmp(max, a, b)
+      | 
+In file included from /tmp/modconfig-sqzhkZ/vmnet-only/procfs.c:43:
+/tmp/modconfig-sqzhkZ/vmnet-only/vnetInt.h:50: warning: "MAX" redefined
+   50 | #define MAX(_a, _b)   (((_a) > (_b)) ? (_a) : (_b))
+      | 
+In file included from ./include/linux/kernel.h:28,
+                 from /tmp/modconfig-sqzhkZ/vmnet-only/procfs.c:23:
+./include/linux/minmax.h:316: note: this is the location of the previous definition
+  316 | #define MAX(a, b) __cmp(max, a, b)
+      | 
+In file included from /tmp/modconfig-sqzhkZ/vmnet-only/bridge.c:58:
+/tmp/modconfig-sqzhkZ/vmnet-only/vnetInt.h:50: warning: "MAX" redefined
+   50 | #define MAX(_a, _b)   (((_a) > (_b)) ? (_a) : (_b))
+      | 
+In file included from ./include/linux/kernel.h:28,
+                 from /tmp/modconfig-sqzhkZ/vmnet-only/bridge.c:24:
+./include/linux/minmax.h:316: note: this is the location of the previous definition
+  316 | #define MAX(a, b) __cmp(max, a, b)
+      | 
+In file included from /tmp/modconfig-sqzhkZ/vmnet-only/userif.c:47:
+/tmp/modconfig-sqzhkZ/vmnet-only/vnetInt.h:50: warning: "MAX" redefined
+   50 | #define MAX(_a, _b)   (((_a) > (_b)) ? (_a) : (_b))
+      | 
+In file included from ./include/linux/kernel.h:28,
+                 from ./include/linux/cpumask.h:10,
+                 from ./arch/x86/include/asm/paravirt.h:21,
+                 from ./arch/x86/include/asm/irqflags.h:82,
+                 from ./include/linux/irqflags.h:18,
+                 from ./include/linux/spinlock.h:59,
+                 from ./include/linux/wait.h:9,
+                 from ./include/linux/wait_bit.h:8,
+                 from ./include/linux/fs.h:6,
+                 from ./include/linux/highmem.h:5,
+                 from /tmp/modconfig-sqzhkZ/vmnet-only/userif.c:27:
+./include/linux/minmax.h:316: note: this is the location of the previous definition
+  316 | #define MAX(a, b) __cmp(max, a, b)
+      | 
+/tmp/modconfig-sqzhkZ/vmnet-only/userif.o: warning: objtool: VNetCsumAndCopyToUser+0x2d: call to csum_partial_copy_nocheck() with UACCESS enabled
+  LD [M]  /tmp/modconfig-sqzhkZ/vmnet-only/vmnet.o
+  MODPOST /tmp/modconfig-sqzhkZ/vmnet-only/Module.symvers
+  CC [M]  /tmp/modconfig-sqzhkZ/vmnet-only/vmnet.mod.o
+  LD [M]  /tmp/modconfig-sqzhkZ/vmnet-only/vmnet.ko
+  BTF [M] /tmp/modconfig-sqzhkZ/vmnet-only/vmnet.ko
+Skipping BTF generation for /tmp/modconfig-sqzhkZ/vmnet-only/vmnet.ko due to unavailability of vmlinux
+make[1]: Leaving directory '/usr/src/linux-headers-6.8.0-136-generic'
+/usr/bin/make -C $PWD SRCROOT=$PWD/. \
+  MODULEBUILDDIR= postbuild
+make[1]: Entering directory '/tmp/modconfig-sqzhkZ/vmnet-only'
+make[1]: 'postbuild' is up to date.
+make[1]: Leaving directory '/tmp/modconfig-sqzhkZ/vmnet-only'
+cp -f vmnet.ko ./../vmnet.o
+make: Leaving directory '/tmp/modconfig-sqzhkZ/vmnet-only'
+Starting VMware services:
+   Virtual machine monitor                                            failed
+   Virtual machine communication interface                             done
+   VM communication interface socket family                            done
+   Virtual ethernet                                                   failed
+   VMware Authentication Daemon                                        done
+Unable to start services
